@@ -1,10 +1,6 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import warnings
-from datetime import datetime
-import os
-import math
+
 
 class Index:
     def __init__(self):
@@ -39,6 +35,7 @@ class Index:
     @staticmethod
     def make_index(data, req):
         try:
+            print("start make index ...")
             #data["datetime"] = pd.to_datetime(data["datetime"])
             #data = data.set_index("datetime")
             data.sort_index(inplace=True)
@@ -147,10 +144,11 @@ class Index:
             data.drop(["DMP", "DMM", "TR", "DMPN", "DMMN", "TRN"], axis=1, inplace=True)
             data['DLP_1'] = data["DLP"].shift(1)
             data['DLM_1'] = data["DLM"].shift(1)
+            print("end make index ...")
             return data
 
         except Exception as e:
-            print(str(e))
+            print("indexer error:", str(e))
             raise
 
 

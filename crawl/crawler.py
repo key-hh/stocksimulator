@@ -6,7 +6,7 @@ Created on 2017. 5. 21.
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
-import urllib
+
 
 class Crawler:
     def __init__(self):
@@ -14,6 +14,7 @@ class Crawler:
     @staticmethod
     def get_price(code, count):
         try:
+            print("start crawling ...")
             code = (str(code)).zfill(6)
             url = "http://finance.naver.com/item/sise_day.nhn?code=" + code + "&page="
             pageIdx = 1
@@ -58,9 +59,10 @@ class Crawler:
                 {"datetime": datetimeList, "close": closePriceList, "open": startPriceList, "low": minPriceList, "high": maxPriceList, "volume": amountList})
             df["datetime"] = df.datetime.map(lambda x: pd.to_datetime(x))
             df = df.set_index("datetime")
+            print("end crawling ...")
             return df
         except Exception as e:
-            print(str(e))
+            print("crawler error:", str(e))
             raise
 
     #not working - page is deprecated
@@ -100,5 +102,5 @@ class Crawler:
             df = pd.DataFrame({"code": codeList, "name": nameList, "div": div})
             return df
         except Exception as e:
-            print(str(e))
+            print("crawler error:", str(e))
             raise
