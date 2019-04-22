@@ -49,9 +49,12 @@ if __name__ == "__main__":
 
             # trade
             bt = backtester.BackTest()
-            result = bt.run_trade(TestTrader(), data)
+            result, finalAsset, finalProfit, meanAsset = bt.run_trade(TestTrader(), data)
 
             displayer.ConsoleDisplayer.display(result)
+
+            print("final asset:", finalAsset, ", final profit rate:", finalProfit, ",mean asset:", meanAsset)
+
         except Exception as e:
             print(str(e))
             raise
