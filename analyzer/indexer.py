@@ -152,7 +152,7 @@ class Index:
             raise
 
 
-class IndexRequest:
+class IndexRequest: 
     rsiDay = 14
     rsiSignal = 9
     cciDay = 14

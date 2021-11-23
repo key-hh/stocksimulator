@@ -12,7 +12,7 @@ class Predictor:
 
     @staticmethod
     def predict(data):
-        print("start predict ...")
+        print("start predict ...test")
         #arima + macd
         stepSize = 2
         windowSize = 180
